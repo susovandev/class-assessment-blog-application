@@ -12,7 +12,6 @@ const categoryModel = new mongoose.Schema(
 	{ timestamps: true },
 );
 
-categoryModel.index({ slug: 1 }, { unique: true });
 categoryModel.index({ authorId: 1 });
 
 categoryModel.pre('save', function (next) {
