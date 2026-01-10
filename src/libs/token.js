@@ -7,6 +7,7 @@ export const signAccessToken = (user) => {
 		{
 			sub: user?._id,
 			role: user?.role,
+			username: user?.username,
 		},
 		config.ACCESS_TOKEN_SECRET_KEY,
 		{ expiresIn: ACCESS_TOKEN_TTL },
@@ -18,6 +19,7 @@ export const signRefreshToken = (user) => {
 		{
 			sub: user?._id,
 			role: user?.role,
+			username: user?.username,
 		},
 		config.REFRESH_TOKEN_SECRET_KEY,
 		{ expiresIn: REFRESH_TOKEN_TTL },

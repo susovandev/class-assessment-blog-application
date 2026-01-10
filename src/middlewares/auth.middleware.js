@@ -7,8 +7,6 @@ import {
 } from '../libs/token.js';
 
 export const AuthGuard = async (req, res, next) => {
-	console.log('AUTH MIDDLEWARE RUNNING....');
-
 	const accessToken = req?.cookies.accessToken;
 	const refreshToken = req?.cookies.refreshToken;
 
@@ -24,7 +22,6 @@ export const AuthGuard = async (req, res, next) => {
 			return res.redirect('/auth/login');
 		}
 		req.user = decoded;
-		console.log(`ACCESS TOKEN VERIFIED SUCCESSFULLY....`, req.user);
 		return next();
 	}
 

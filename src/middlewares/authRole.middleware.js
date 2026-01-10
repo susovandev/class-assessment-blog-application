@@ -1,7 +1,6 @@
 export const RoleGuard = (...roles) => {
 	return (req, res, next) => {
 		try {
-			console.log('Role Guard Running...');
 			const user = req.user;
 
 			if (!user || !roles.includes(user?.role)) {

@@ -7,16 +7,15 @@ const categoryModel = new mongoose.Schema(
 			ref: 'User',
 		},
 		name: { type: String, required: true },
-		slug: { type: String, required: true, unique: true },
+		slug: { type: String, unique: true },
 	},
 	{ timestamps: true },
 );
 
 categoryModel.index({ authorId: 1 });
 
-categoryModel.pre('save', function (next) {
-	this.slug = this.slug.toLowerCase().replace(/ /g, '-');
-	next();
+categoryModel.pre('save', function () {
+	this.slug = this.name.toLowerCase().replace(/ /g, '-');
 });
 
 export default mongoose.model('Category', categoryModel);
