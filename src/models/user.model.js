@@ -28,6 +28,7 @@ const userSchema = new mongoose.Schema(
 			default: 'user',
 		},
 		refreshToken: { type: String, select: false },
+		isActive: { type: Boolean, default: false },
 	},
 	{ timestamps: true },
 );

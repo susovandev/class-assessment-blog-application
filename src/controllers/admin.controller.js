@@ -8,6 +8,42 @@ import {
 } from '../libs/cloudinary.js';
 import fs from 'node:fs';
 
+export const getUsersPage = async (req, res) => {
+	try {
+		const users = await userModel
+			.find({ role: { $ne: 'admin' } })
+			.select('-password');
+
+		res.render('admin/users', {
+			admin: req.user,
+			users,
+		});
+	} catch (error) {
+		console.error('Admin get users Error:', error?.message || error);
+		req.flash('error', 'Some thing went wrong please try again');
+		return res.redirect('/admin/dashboard');
+	}
+};
+
+export const toggleUserStatus = async (req, res) => {
+	const user = await userModel.findById(req.params.id);
+
+	if (user.role === 'admin') {
+		req.flash('error', 'Admin account cannot be disabled');
+		return res.redirect('/admin/users');
+	}
+
+	user.isActive = !user.isActive;
+	await user.save();
+
+	req.flash(
+		'success',
+		`User ${user.isActive ? 'enabled' : 'disabled'} successfully`,
+	);
+
+	res.redirect('/admin/users');
+};
+
 export const addBlogPage = async (req, res) => {
 	try {
 		const { sub } = req?.user;
