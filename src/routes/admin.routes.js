@@ -14,6 +14,7 @@ import {
 	updateBlogPage,
 	updateBlogHandler,
 	toggleUserStatus,
+	getCommentAnalytics,
 } from '../controllers/admin.controller.js';
 import { upload } from '../middlewares/multer.middleware.js';
 
@@ -29,6 +30,8 @@ router.get('/dashboard', adminDashBoardPage);
 
 router.post('/blogs/add', upload.single('image'), addBlogHandler);
 router.post('/categories/add', addCategoryHandler);
+
+router.get('/comments', getCommentAnalytics);
 
 router.post('/users/:id/toggle', toggleUserStatus);
 router.get('/blogs/:id/edit', updateBlogPage);

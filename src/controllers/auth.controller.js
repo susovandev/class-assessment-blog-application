@@ -15,9 +15,9 @@ export const forgotPasswordPage = async (req, res) => {
 	res.render('auth/forgot-password');
 };
 
-export const changePasswordPage = async(req, res) => {
+export const changePasswordPage = async (req, res) => {
 	res.render('auth/change-password');
-}
+};
 export const registerHandler = async (req, res) => {
 	try {
 		const { username, email, password } = req.body;
@@ -102,7 +102,7 @@ export const loginHandler = async (req, res) => {
 		// 	set email and password to the cookies
 		// }
 		req.flash('success', 'You have logged in successfully');
-		return res.redirect('/user/profile');
+		return res.redirect('/');
 	} catch (error) {
 		console.error('Register Error:', error?.message || error);
 		req.flash('error', 'Some thing went wrong please try again');

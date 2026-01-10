@@ -13,6 +13,10 @@ const commentSchema = new mongoose.Schema(
 			ref: 'Blog',
 			required: true,
 		},
+		isActive: {
+			type: Boolean,
+			default: true,
+		},
 		replies: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
