@@ -2,80 +2,80 @@
 <html lang="en">
   <%- include("../partials/head.ejs", {title: 'User Profile'}) %>
 
-	<body class="bg-gray-100 min-h-screen">
-		<!-- Toast Flash -->
-		<%- include('../partials/toast') %>
+  <body class="bg-gray-100 min-h-screen">
+    <!-- Toast Flash -->
+    <%- include('../partials/toast') %>
 
-		<div class="max-w-4xl mx-auto py-10 px-4">
-			<!-- Profile Card -->
-			<div class="bg-white rounded-xl shadow-lg overflow-hidden">
-				<!-- Header -->
-				<div class="bg-gradient-to-r from-blue-600 to-indigo-600 h-32"></div>
+    <div class="max-w-4xl mx-auto py-10 px-4">
+      <!-- Profile Card -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 h-32"></div>
 
-				<!-- Profile Info -->
-				<div class="relative px-6 pb-6">
-					<!-- Avatar -->
-					<div class="-mt-16 flex justify-center">
-						<img
-							src="<%= user?.profileImage?.secure_url %>"
-							alt="Profile Image"
-							class="w-32 h-32 rounded-full border-4 border-white object-cover shadow-md"
-						/>
-					</div>
+        <!-- Profile Info -->
+        <div class="relative px-6 pb-6">
+          <!-- Avatar -->
+          <div class="-mt-16 flex justify-center">
+            <img
+              src="<%= user?.profileImage?.secure_url %>"
+              alt="Profile Image"
+              class="w-32 h-32 rounded-full border-4 border-white object-cover shadow-md"
+            />
+          </div>
 
-					<!-- User Details -->
-					<div class="text-center mt-4">
-						<h2 class="text-2xl font-bold text-gray-800">
-							<%= user?.username %>
-						</h2>
+          <!-- User Details -->
+          <div class="text-center mt-4">
+            <h2 class="text-2xl font-bold text-gray-800">
+              <%= user?.username %>
+            </h2>
 
-						<p class="text-gray-600 mt-1"><%= user?.email %></p>
+            <p class="text-gray-600 mt-1"><%= user?.email %></p>
 
-						<!-- Role Badge -->
-						<span
-							class="inline-block mt-3 px-4 py-1 rounded-full text-sm font-semibold <%= user.role === 'admin' ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700' %>"
-						>
-							<%= user?.role?.toUpperCase() %>
-						</span>
-					</div>
+            <!-- Role Badge -->
+            <span
+              class="inline-block mt-3 px-4 py-1 rounded-full text-sm font-semibold <%= user.role === 'admin' ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700' %>"
+            >
+              <%= user?.role?.toUpperCase() %>
+            </span>
+          </div>
 
-					<!-- Meta Info -->
-					<div
-						class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-700"
-					>
-						<div class="flex justify-between border rounded-lg p-3">
-							<span class="font-medium">Account Created</span>
-							<span>
-								<%= new Date(user?.createdAt).toLocaleDateString() %>
-							</span>
-						</div>
+          <!-- Meta Info -->
+          <div
+            class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-700"
+          >
+            <div class="flex justify-between border rounded-lg p-3">
+              <span class="font-medium">Account Created</span>
+              <span>
+                <%= new Date(user?.createdAt).toLocaleDateString() %>
+              </span>
+            </div>
 
-						<div class="flex justify-between border rounded-lg p-3">
-							<span class="font-medium">Last Updated</span>
-							<span>
-								<%= new Date(user?.updatedAt).toLocaleDateString() %>
-							</span>
-						</div>
-					</div>
+            <div class="flex justify-between border rounded-lg p-3">
+              <span class="font-medium">Last Updated</span>
+              <span>
+                <%= new Date(user?.updatedAt).toLocaleDateString() %>
+              </span>
+            </div>
+          </div>
 
-					<!-- Actions -->
-					<div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-						<a
-							href="/user/profile/edit"
-							class="px-6 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold text-center"
-						>
-							Edit Profile
-						</a>
+          <!-- Actions -->
+          <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/user/profile/edit"
+              class="px-6 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold text-center"
+            >
+              Edit Profile
+            </a>
 
-						<a
-							href="/auth/change-password"
-							class="px-6 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-semibold text-center"
-						>
-							Change Password
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</body>
+            <a
+              href="/auth/change-password"
+              class="px-6 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-semibold text-center"
+            >
+              Change Password
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

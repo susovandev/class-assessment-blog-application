@@ -1,46 +1,46 @@
-import express from 'express';
-import path from 'node:path';
-import session from 'express-session';
-import flash from 'connect-flash';
-import cookieParser from 'cookie-parser';
+import express from "express";
+import path from "node:path";
+import session from "express-session";
+import flash from "connect-flash";
+import cookieParser from "cookie-parser";
 
-import configureRoutes from './routes/index.js';
+import configureRoutes from "./routes/index.js";
 
 export default function initializeApp() {
-	const app = express();
+  const app = express();
 
-	// static files
-	app.use(express.static('public'));
+  // static files
+  app.use(express.static("public"));
 
-	// view engine
-	app.set('view engine', 'ejs');
-	app.set('views', path.join(process.cwd(), 'views'));
+  // view engine
+  app.set("view engine", "ejs");
+  app.set("views", path.join(process.cwd(), "views"));
 
-	// middlewares
-	app.use(express.json());
-	app.use(express.urlencoded({ extended: true }));
-	app.use(cookieParser());
-	
-	// session
-	app.use(
-		session({
-			secret: 'blog',
-			resave: false,
-			saveUninitialized: true,
-		}),
-	);
+  // middlewares
+  app.use(express.json());
+  app.use(express.urlencoded({extended: true}));
+  app.use(cookieParser());
 
-	app.use(flash());
+  // session
+  app.use(
+    session({
+      secret: "blog",
+      resave: false,
+      saveUninitialized: true,
+    })
+  );
 
-	// Make flash available to all views
-	app.use((req, res, next) => {
-		res.locals.success = req.flash('success');
-		res.locals.error = req.flash('error');
-		next();
-	});
+  app.use(flash());
 
-	// routes
-	configureRoutes(app);
+  // Make flash available to all views
+  app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+  });
 
-	return app;
+  // routes
+  configureRoutes(app);
+
+  return app;
 }

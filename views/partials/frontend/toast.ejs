@@ -1,0 +1,13 @@
+<div class="flash-container">
+	<% if (success && success.length) { %>
+		<div class="flash-message success">
+			<%= success[0] %>
+		</div>
+	<% } %>
+
+	<% if (error && error.length) { %>
+		<div class="flash-message error">
+			<%= error[0] %>
+		</div>
+	<% } %>
+</div>

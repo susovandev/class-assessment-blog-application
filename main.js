@@ -1,18 +1,18 @@
-import initializeApp from './src/app.js';
-import { config } from './src/config/index.js';
-import connectDB from './src/config/database.js';
+import initializeApp from "./src/app.js";
+import {config} from "./src/config/index.js";
+import connectDB from "./src/config/database.js";
 
 export default function initializeServer() {
-	const app = initializeApp();
-	const port = config.PORT;
-	connectDB()
-		.then(() => {
-			app.listen(port, () => console.log(`Server listening on port ${port}`));
-		})
-		.catch((error) => {
-			console.error('Error connecting to database', error?.message);
-			process.exit(1);
-		});
+  const app = initializeApp();
+  const port = config.PORT;
+  connectDB()
+    .then(() => {
+      app.listen(port, () => console.log(`Server listening on port ${port}`));
+    })
+    .catch((error) => {
+      console.error("Error connecting to database", error?.message);
+      process.exit(1);
+    });
 }
 
 initializeServer();

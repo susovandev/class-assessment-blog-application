@@ -1,163 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include("../partials/head.ejs", {title: "Add Blog"}) %>
+  <%- include("../partials/head.ejs", {title: "Add Blog"}) %>
 
-<body class="bg-gray-100 min-h-screen flex">
+  <body class="bg-gray-100 min-h-screen flex">
+    <!-- Sidebar -->
+    <%- include("../admin/sidebar.ejs", {username: admin.username, profileImage: admin.profileImage?.secure_url}) %>
 
-  <!-- Sidebar -->
-  <aside class="w-64 bg-gray-900 text-gray-100 flex flex-col">
+    <!-- Main Content -->
+    <main class="flex-1 px-20 py-8">
+      <!-- Toast Flash -->
+      <%- include('../partials/toast') %>
 
-    <div class="px-6 py-5 text-2xl font-bold border-b border-gray-800">
-      Admin Panel
-    </div>
-
-    <nav class="flex-1 px-4 py-6 space-y-2">
-      <a href="/admin/dashboard" class="block px-4 py-2 rounded hover:bg-gray-800">
-        Dashboard
-      </a>
-      <a href="/admin/categories" class="block px-4 py-2 rounded hover:bg-gray-800">
-        Manage Categories
-      </a>
-      <a href="/admin/blogs" class="block px-4 py-2 rounded bg-gray-800">
-        Manage Blogs
-      </a>
-      <a href="/admin/users" class="block px-4 py-2 rounded hover:bg-gray-800">
-        Manage Users
-      </a>
-      <a href="/admin/comments" class="block px-4 py-2 rounded hover:bg-gray-800">
-        Manage Comments
-      </a>
-    </nav>
-
-    <div class="px-4 py-4 border-t border-gray-800 text-sm text-gray-400">
-      Logged in as <span class="text-white font-medium"><%= admin.username %></span>
-    </div>
-  </aside>
-
-  <!-- Main Content -->
-  <main class="flex-1 px-20 py-8">
-
-    <!-- Toast Flash -->
-    <%- include('../partials/toast') %>
-
-    <!-- Header -->
-    <div class="mb-6">
-      <h1 class="text-3xl font-bold text-gray-800">Add New Blog</h1>
-      <p class="text-gray-600 mt-1">
-        Create and publish a new blog post
-      </p>
-    </div>
-
-    <!-- Blog Form -->
-    <form
-      action="/admin/blogs/add"
-      method="POST"
-      enctype="multipart/form-data"
-      class="bg-white rounded-xl shadow p-8 space-y-6 max-w-4xl"
-    >
-
-      <!-- Title -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">
-          Blog Title
-        </label>
-        <input
-          type="text"
-          name="title"
-          required
-          placeholder="Enter blog title"
-          class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
-        />
+      <!-- Header -->
+      <div class="mb-6">
+        <h1 class="text-3xl font-bold text-gray-800">Add New Blog</h1>
+        <p class="text-gray-600 mt-1">Create and publish a new blog post</p>
       </div>
 
-      <!-- Content -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">
-          Content
-        </label>
-        <textarea
-          name="content"
-          rows="8"
-          required
-          placeholder="Write your blog content here..."
-          class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
-        ></textarea>
-      </div>
+      <!-- Blog Form -->
+      <form
+        action="/admin/blogs/add"
+        method="POST"
+        enctype="multipart/form-data"
+        class="bg-white rounded-xl shadow p-8 space-y-6 max-w-4xl"
+      >
+        <!-- Title -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">
+            Blog Title
+          </label>
+          <input
+            type="text"
+            name="title"
+            required
+            placeholder="Enter blog title"
+            class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
 
-      <!-- Featured Image -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">
-          Featured Image
-        </label>
-        <input
-          type="file"
-          name="image"
-          accept="image/*"
-          required
-          class="w-full border rounded-md p-2"
-        />
-        <p class="text-xs text-gray-500 mt-1">
-          Supported formats: JPG, PNG, WEBP
-        </p>
-      </div>
+        <!-- Content -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">
+            Content
+          </label>
+          <textarea
+            name="content"
+            rows="8"
+            required
+            placeholder="Write your blog content here..."
+            class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+          ></textarea>
+        </div>
 
-      <!-- Category -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">
-          Category
-        </label>
-        <select
-          name="categoryId"
-          required
-          class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="">-- Select Category --</option>
-          <% categories.forEach(category => { %>
-            <option value="<%= category._id %>">
-              <%= category.name %>
-            </option>
-          <% }) %>
-        </select>
-      </div>
+        <!-- Featured Image -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">
+            Featured Image
+          </label>
+          <input
+            type="file"
+            name="image"
+            accept="image/*"
+            required
+            class="w-full border rounded-md p-2"
+          />
+          <p class="text-xs text-gray-500 mt-1">
+            Supported formats: JPG, PNG, WEBP
+          </p>
+        </div>
 
-      <!-- Tags -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">
-          Tags
-        </label>
-        <input
-          type="text"
-          name="tags"
-          placeholder="e.g. nodejs, express, mongodb"
-          class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
-        />
-        <p class="text-xs text-gray-500 mt-1">
-          Separate tags using commas
-        </p>
-      </div>
+        <!-- Category -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">
+            Category
+          </label>
+          <select
+            name="categoryId"
+            required
+            class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">-- Select Category --</option>
+            <% categories.forEach(category => { %>
+            <option value="<%= category._id %>"><%= category.name %></option>
+            <% }) %>
+          </select>
+        </div>
 
-      <!-- Actions -->
-      <div class="flex justify-end gap-4 pt-4">
+        <!-- Tags -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">
+            Tags
+          </label>
+          <input
+            type="text"
+            name="tags"
+            placeholder="e.g. nodejs, express, mongodb"
+            class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+          />
+          <p class="text-xs text-gray-500 mt-1">Separate tags using commas</p>
+        </div>
 
-        <a
-          href="/admin/blogs"
-          class="px-6 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium"
-        >
-          Cancel
-        </a>
+        <!-- Actions -->
+        <div class="flex justify-end gap-4 pt-4">
+          <a
+            href="/admin/blogs"
+            class="px-6 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium"
+          >
+            Cancel
+          </a>
 
-        <button
-          type="submit"
-          class="px-6 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-semibold"
-        >
-          Publish Blog
-        </button>
-
-      </div>
-
-    </form>
-
-  </main>
-
-</body>
+          <button
+            type="submit"
+            class="px-6 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-semibold"
+          >
+            Publish Blog
+          </button>
+        </div>
+      </form>
+    </main>
+  </body>
 </html>
