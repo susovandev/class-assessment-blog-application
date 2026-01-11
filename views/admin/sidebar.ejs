@@ -14,30 +14,50 @@
     </a>
 
     <a
+      href="/admin/profile"
+      class="block px-4 py-2 rounded hover:bg-gray-800"
+    >
+      My Profile
+    </a>
+
+    <a
       href="/admin/categories"
       class="block px-4 py-2 rounded hover:bg-gray-800"
     >
       Manage Categories
     </a>
 
-    <a href="/admin/blogs" class="block px-4 py-2 rounded hover:bg-gray-800">
+    <a
+      href="/admin/blogs"
+      class="block px-4 py-2 rounded hover:bg-gray-800"
+    >
       Manage Blogs
     </a>
 
-    <a href="/admin/users" class="block px-4 py-2 rounded hover:bg-gray-800">
+    <a
+      href="/admin/users"
+      class="block px-4 py-2 rounded hover:bg-gray-800"
+    >
       Manage Users
     </a>
 
-    <a href="/admin/comments" class="block px-4 py-2 rounded hover:bg-gray-800">
+    <a
+      href="/admin/comments"
+      class="block px-4 py-2 rounded hover:bg-gray-800"
+    >
       Comment Analytics
     </a>
   </nav>
 
+  <!-- Footer / Admin Info -->
   <div
     class="border-t border-gray-800 px-4 py-4 flex items-center justify-between"
   >
-    <!-- Admin Info -->
-    <div class="flex items-center gap-3">
+    <!-- Admin Info (Clickable Profile) -->
+    <a
+      href="/admin/profile"
+      class="flex items-center gap-3 hover:bg-gray-800 p-2 rounded transition"
+    >
       <img
         src="<%= profileImage || 'https://ui-avatars.com/api/?name=' + username %>"
         alt="Admin Avatar"
@@ -48,7 +68,7 @@
         <p class="text-sm font-semibold text-white"><%= username %></p>
         <p class="text-xs text-gray-400">Administrator</p>
       </div>
-    </div>
+    </a>
 
     <!-- Logout -->
     <form action="/auth/logout" method="POST">
