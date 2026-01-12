@@ -1,6 +1,9 @@
-import {v2 as cloudinary} from "cloudinary";
-import {config} from "../config/index.js";
-import {CLOUDINARY_RESOURCE_TYPE, CLOUDINARY_FOLDER_NAME} from "../constants/index.js";
+import { v2 as cloudinary } from 'cloudinary';
+import { config } from '../config/index.js';
+import {
+  CLOUDINARY_RESOURCE_TYPE,
+  CLOUDINARY_FOLDER_NAME,
+} from '../constants/index.js';
 
 cloudinary.config({
   cloud_name: config.CLOUDINARY_CLOUD_NAME,
@@ -18,7 +21,7 @@ export const uploadOnCloudinary = async (params) => {
   console.debug(`Uploading file to Cloudinary. Resource Type: ${resourceType}`);
 
   if (!localFilePath) {
-    console.warn("No local file path provided for video upload");
+    console.warn('No local file path provided for video upload');
     return null;
   }
 
@@ -33,7 +36,7 @@ export const uploadOnCloudinary = async (params) => {
 
     return uploadResult;
   } catch (error) {
-    console.error("Cloudinary file upload failed", error);
+    console.error('Cloudinary file upload failed', error);
     throw error;
   }
 };
@@ -43,18 +46,20 @@ export const deleteFromCloudinary = async (publicId) => {
     console.debug(`Preparing to delete image from Cloudinary: ${publicId}`);
 
     if (!publicId) {
-      console.warn("No public id provided for image deletion");
+      console.warn('No public id provided for image deletion');
       return null;
     }
 
     console.debug(`Deleting image from cloudinary: ${publicId}`);
 
     const result = await cloudinary.uploader.destroy(publicId, {
-      resource_type: "image",
+      resource_type: 'image',
     });
 
-    if (result.result !== "ok") {
-      console.error(`Image deletion returned unexpected result: ${result.result}`);
+    if (result.result !== 'ok') {
+      console.error(
+        `Image deletion returned unexpected result: ${result.result}`
+      );
       return null;
     }
 

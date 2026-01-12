@@ -1,35 +1,35 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const blogSchema = new mongoose.Schema(
   {
     image: {
-      secure_url: {type: String, required: true},
-      public_id: {type: String, required: true},
+      secure_url: { type: String, required: true },
+      public_id: { type: String, required: true },
     },
-    title: {type: String, required: true},
-    content: {type: String, required: true},
+    title: { type: String, required: true },
+    content: { type: String, required: true },
     tags: [String],
     authorId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
       required: true,
     },
     categoryId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
+      ref: 'Category',
       required: true,
     },
     comments: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Comment",
+        ref: 'Comment',
       },
     ],
   },
-  {timestamps: true}
+  { timestamps: true }
 );
 
-blogSchema.index({authorId: 1});
-blogSchema.index({category: 1});
+blogSchema.index({ authorId: 1 });
+blogSchema.index({ category: 1 });
 
-export default mongoose.model("Blog", blogSchema);
+export default mongoose.model('Blog', blogSchema);

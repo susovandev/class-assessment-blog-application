@@ -11,7 +11,7 @@
   text-align: center;
   -webkit-tap-highlight-color: transparent;
 }
-.owl-theme .owl-nav [class*="owl-"] {
+.owl-theme .owl-nav [class*='owl-'] {
   color: #fff;
   font-size: 14px;
   margin: 5px;
@@ -21,7 +21,7 @@
   cursor: pointer;
   border-radius: 3px;
 }
-.owl-theme .owl-nav [class*="owl-"]:hover {
+.owl-theme .owl-nav [class*='owl-']:hover {
   background: #4dc7a0;
   color: #fff;
   text-decoration: none;

@@ -573,7 +573,7 @@ img.vbox-figlio {
 .sk-fading-circle .sk-circle:before {
   display: block;
   border-radius: 100%;
-  content: "";
+  content: '';
   background-color: #333;
 }
 .sk-three-bounce .sk-bounce1 {
@@ -981,7 +981,7 @@ img.vbox-figlio {
   transform: scale(1.1);
 }
 .sk-folding-cube .sk-cube:before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;

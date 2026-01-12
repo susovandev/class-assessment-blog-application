@@ -1,16 +1,16 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const commentSchema = new mongoose.Schema(
   {
-    content: {type: String, required: true},
+    content: { type: String, required: true },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
       required: true,
     },
     blogId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Blog",
+      ref: 'Blog',
       required: true,
     },
     isActive: {
@@ -20,14 +20,14 @@ const commentSchema = new mongoose.Schema(
     replies: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Reply",
+        ref: 'Reply',
       },
     ],
   },
-  {timestamps: true}
+  { timestamps: true }
 );
 
-commentSchema.index({userId: 1});
-commentSchema.index({blogId: 1});
+commentSchema.index({ userId: 1 });
+commentSchema.index({ blogId: 1 });
 
-export default mongoose.model("Comment", commentSchema);
+export default mongoose.model('Comment', commentSchema);

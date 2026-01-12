@@ -1,5 +1,5 @@
 import authRoutes from './auth.routes.js';
-import userRoutes from './user.routes.js';
+import userRoutes from './user/user.routes.js';
 import adminDashboardRoutes from './admin/dashboard/dashboard.routes.js';
 import frontendRoutes from './frontend/frontend.routes.js';
 import adminProfileRoutes from './admin/profile/profile.routes.js';

@@ -1,145 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
+  <%- include("../../partials/frontend/head.ejs") %>
 
-<%- include("../../partials/frontend/head.ejs") %>
+  <body>
+    <%- include("../../partials/frontend/toast.ejs") %>
+    <!-- ======= Header ======= -->
+    <%- include("../../partials/frontend/header.ejs") %>
+    <!-- End Header -->
 
-<body>
-<%- include("../../partials/frontend/toast.ejs") %>
-  <!-- ======= Header ======= -->
-  <%- include("../../partials/frontend/header.ejs") %>
-  <!-- End Header -->
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <%- include("../../partials/frontend/breadcrumbs.ejs", {title: "Blogs"}) %>
+      <!-- End Breadcrumbs -->
 
-  <main id="main">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <%- include("../../partials/frontend/breadcrumbs.ejs", {title: "Blogs"}) %>
-    <!-- End Breadcrumbs -->
-
-    <!-- ======= Blog Section ======= -->
-    <section id="blog" class="blog">
-      <div class="container">
-
-        <div class="row">
-
-          <div class="col-lg-8 entries">
-            <% if(blogs && blogs.length > 0) { %>
-              <% blogs.forEach(blog => { %>
-                <article class="entry" data-aos="fade-up">
-
-              <div class="entry-img">
-                <img src="<%= blog.image.secure_url %>" alt="<%= blog.title %>" class="img-fluid">
-              </div>
-
-              <h2 class="entry-title">
-                <a href="/blogs/<%= blog._id %>"><%= blog.title %></a>
-              </h2>
-
-              <div class="entry-meta">
-                <ul>
-                  <li class="d-flex align-items-center"><i class="icofont-user"></i> <a href="/blogs/<%= blog._id %>"><%= blog.authorId?.username %></a></li>
-                  <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="/blogs/<%= blog._id %>"><time datetime="2020-01-01"> <%= new Date(blog?.createdAt).toLocaleDateString() %></time></a></li>
-                  <li class="d-flex align-items-center"><i class="icofont-comment"></i> <a href="/blogs/<%= blog._id %>"> <%= blog?.comments.length %></a></li>
-                </ul>
-              </div>
-
-              <div class="entry-content">
-                <p>
-                  <%= blog.content %>
-                </p>
-                <div class="read-more">
-                  <a href="/blogs/<%= blog._id %>">Read More</a>
+      <!-- ======= Blog Section ======= -->
+      <section id="blog" class="blog">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 entries">
+              <% if(blogs && blogs.length > 0) { %> <% blogs.forEach(blog => {
+              %>
+              <article class="entry" data-aos="fade-up">
+                <div class="entry-img">
+                  <img
+                    src="<%= blog.image.secure_url %>"
+                    alt="<%= blog.title %>"
+                    class="img-fluid"
+                  />
                 </div>
-              </div>
 
-            </article>
+                <h2 class="entry-title">
+                  <a href="/blogs/<%= blog._id %>"><%= blog.title %></a>
+                </h2>
+
+                <div class="entry-meta">
+                  <ul>
+                    <li class="d-flex align-items-center">
+                      <i class="icofont-user"></i>
+                      <a href="/blogs/<%= blog._id %>"
+                        ><%= blog.authorId?.username %></a
+                      >
+                    </li>
+                    <li class="d-flex align-items-center">
+                      <i class="icofont-wall-clock"></i>
+                      <a href="/blogs/<%= blog._id %>"
+                        ><time datetime="2020-01-01">
+                          <%= new Date(blog?.createdAt).toLocaleDateString()
+                          %></time
+                        ></a
+                      >
+                    </li>
+                    <li class="d-flex align-items-center">
+                      <i class="icofont-comment"></i>
+                      <a href="/blogs/<%= blog._id %>">
+                        <%= blog?.comments.length %></a
+                      >
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="entry-content">
+                  <p>
+                    <%= blog.content %>
+                  </p>
+                  <div class="read-more">
+                    <a href="/blogs/<%= blog._id %>">Read More</a>
+                  </div>
+                </div>
+              </article>
               <%}); %>
-            <%} else { %>
+              <%} else { %>
               <p>No blogs available</p>
-            <%} %>
-            <!-- End blog entry -->
+              <%} %>
+              <!-- End blog entry -->
 
-            <div class="blog-pagination">
-              <ul class="justify-content-center">
-                <li class="disabled"><i class="icofont-rounded-left"></i></li>
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#"><i class="icofont-rounded-right"></i></a></li>
-              </ul>
-            </div>
-
-          </div>
-          <!-- End blog entries list -->
-
-          <div class="col-lg-4">
-
-            <div class="sidebar" data-aos="fade-left">
-
-              <h3 class="sidebar-title">Search</h3>
-              <div class="sidebar-item search-form">
-                <form action="">
-                  <input type="text">
-                  <button type="submit"><i class="icofont-search"></i></button>
-                </form>
-
-              </div>
-              <!-- End sidebar search formn-->
-
-              <h3 class="sidebar-title">Categories</h3>
-              <div class="sidebar-item categories">
-                <ul>
-                  <% if(categories && categories.length > 0) { %>
-                    <% categories.forEach((category) => { %>
-                      <li><a href="#"><%= category.name %> <span><%= (category.totalBlogs) %></span></a></li>
-                    <%}) %>
-                  <%} else { %>
-                    <p>No categories available</p>
-                  <%}%>
+              <div class="blog-pagination">
+                <ul class="justify-content-center">
+                  <li class="disabled"><i class="icofont-rounded-left"></i></li>
+                  <li><a href="#">1</a></li>
+                  <li class="active"><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li>
+                    <a href="#"><i class="icofont-rounded-right"></i></a>
+                  </li>
                 </ul>
-
               </div>
-              <!-- End sidebar categories-->
+            </div>
+            <!-- End blog entries list -->
 
-              <h3 class="sidebar-title">Recent Posts</h3>
-              <div class="sidebar-item recent-posts">
-                <% if(recentBlogsList && recentBlogsList.length > 0) { %>
-                  <% recentBlogsList.forEach(post => { %>
-                    <div class="post-item clearfix">
-                  <img src="<%= post.image.secure_url %>" alt="<%= post.title.slice(0,10) %>" class="">
-                  <h4><a href="/blogs/<%= post._id %>"><%= post.title.slice(0, 30) %></a></h4>
-                  <time datetime="2020-01-01"><%= new Date(post?.createdAt).toLocaleDateString() %></time>
+            <div class="col-lg-4">
+              <div class="sidebar" data-aos="fade-left">
+                <h3 class="sidebar-title">Search</h3>
+                <div class="sidebar-item search-form">
+                  <form action="">
+                    <input type="text" />
+                    <button type="submit">
+                      <i class="icofont-search"></i>
+                    </button>
+                  </form>
                 </div>
+                <!-- End sidebar search formn-->
+
+                <h3 class="sidebar-title">Categories</h3>
+                <div class="sidebar-item categories">
+                  <ul>
+                    <% if(categories && categories.length > 0) { %> <%
+                    categories.forEach((category) => { %>
+                    <li>
+                      <a href="#"
+                        ><%= category.name %>
+                        <span><%= (category.totalBlogs) %></span></a
+                      >
+                    </li>
+                    <%}) %>
+                    <%} else { %>
+                    <p>No categories available</p>
+                    <%}%>
+                  </ul>
+                </div>
+                <!-- End sidebar categories-->
+
+                <h3 class="sidebar-title">Recent Posts</h3>
+                <div class="sidebar-item recent-posts">
+                  <% if(recentBlogsList && recentBlogsList.length > 0) { %> <%
+                  recentBlogsList.forEach(post => { %>
+                  <div class="post-item clearfix">
+                    <img
+                      src="<%= post.image.secure_url %>"
+                      alt="<%= post.title.slice(0,10) %>"
+                      class=""
+                    />
+                    <h4>
+                      <a href="/blogs/<%= post._id %>"
+                        ><%= post.title.slice(0, 30) %></a
+                      >
+                    </h4>
+                    <time datetime="2020-01-01"
+                      ><%= new Date(post?.createdAt).toLocaleDateString()
+                      %></time
+                    >
+                  </div>
                   <%});%>
-               <% } else {%>
-                <h4>No recent posts available</h4>
-               <%}%>
+                  <% } else {%>
+                  <h4>No recent posts available</h4>
+                  <%}%>
+                </div>
+                <!-- End sidebar recent posts-->
+
+                <h3 class="sidebar-title">Tags</h3>
+                <div class="sidebar-item tags">
+                  <!-- todo -->
+                </div>
+                <!-- End sidebar tags-->
               </div>
-              <!-- End sidebar recent posts-->
-
-              <h3 class="sidebar-title">Tags</h3>
-              <div class="sidebar-item tags">
-               <!-- todo -->
-
-              </div><!-- End sidebar tags-->
-
-            </div><!-- End sidebar -->
-
-          </div><!-- End blog sidebar -->
-
+              <!-- End sidebar -->
+            </div>
+            <!-- End blog sidebar -->
+          </div>
         </div>
+      </section>
+      <!-- End Blog Section -->
+    </main>
+    <!-- End #main -->
 
-      </div>
-    </section><!-- End Blog Section -->
+    <!-- ======= Footer ======= -->
+    <%- include("../../partials/frontend/footer.ejs") %>
 
-  </main>
-  <!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-   <%- include("../../partials/frontend/footer.ejs") %>
-
-  <%- include("../../partials/frontend/end.ejs") %>
-
-</body>
-<%- include("../../partials/frontend/toastTimeout.ejs") %>
-
+    <%- include("../../partials/frontend/end.ejs") %>
+  </body>
+  <%- include("../../partials/frontend/toastTimeout.ejs") %>
 </html>

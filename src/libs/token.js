@@ -1,6 +1,6 @@
-import jwt from "jsonwebtoken";
-import {config} from "../config/index.js";
-import {ACCESS_TOKEN_TTL, REFRESH_TOKEN_TTL} from "../constants/index.js";
+import jwt from 'jsonwebtoken';
+import { config } from '../config/index.js';
+import { ACCESS_TOKEN_TTL, REFRESH_TOKEN_TTL } from '../constants/index.js';
 
 export const signAccessToken = (user) => {
   return jwt.sign(
@@ -10,7 +10,7 @@ export const signAccessToken = (user) => {
       username: user?.username,
     },
     config.ACCESS_TOKEN_SECRET_KEY,
-    {expiresIn: ACCESS_TOKEN_TTL}
+    { expiresIn: ACCESS_TOKEN_TTL }
   );
 };
 
@@ -22,14 +22,14 @@ export const signRefreshToken = (user) => {
       username: user?.username,
     },
     config.REFRESH_TOKEN_SECRET_KEY,
-    {expiresIn: REFRESH_TOKEN_TTL}
+    { expiresIn: REFRESH_TOKEN_TTL }
   );
 };
 
 export const generateAccessAndRefreshToken = (user) => {
   const accessToken = signAccessToken(user);
   const refreshToken = signRefreshToken(user);
-  return {accessToken, refreshToken};
+  return { accessToken, refreshToken };
 };
 
 export const verifyAccessToken = (accessToken) => {

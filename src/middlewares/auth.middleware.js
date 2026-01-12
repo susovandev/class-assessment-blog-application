@@ -1,60 +1,49 @@
 import userModel from '../models/user.model.js';
-import { config } from '../config/index.js';
 import {
   verifyAccessToken,
   verifyRefreshToken,
   signAccessToken,
 } from '../libs/token.js';
-
+import { ACCESS_TOKEN_TTL } from '../constants/index.js';
 export const AuthGuard = async (req, res, next) => {
-  const accessToken = req?.cookies.accessToken;
-  const refreshToken = req?.cookies.refreshToken;
+  const accessToken = req.cookies?.accessToken;
+  const refreshToken = req.cookies?.refreshToken;
 
   if (!refreshToken) {
-    req.flash('error', 'Unauthorized Access');
     return res.redirect('/auth/login');
   }
 
+  // Try access token
   if (accessToken) {
     const decoded = verifyAccessToken(accessToken);
-    if (!decoded) {
-      req.flash('error', 'Unauthorized Access');
-      return res.redirect('/auth/login');
+    if (decoded) {
+      const user = await userModel.findById(decoded.sub);
+      if (!user) return res.redirect('/auth/login');
+
+      req.user = user;
+      res.locals.currentUser = user;
+      return next();
     }
-    const user = await userModel.findById(decoded?.sub).select('+refreshToken');
-    req.user = user;
-    return next();
   }
 
+  // Fallback to refresh token
   const decoded = verifyRefreshToken(refreshToken);
-  if (!decoded) {
-    req.flash('error', 'Unauthorized Access');
-    return res.redirect('/auth/login');
-  }
+  if (!decoded) return res.redirect('/auth/login');
 
-  // Check if user exists or not
-  const user = await userModel.findById(decoded?.sub).select('+refreshToken');
-  if (!user || user.refreshToken !== refreshToken) {
-    req.flash('error', 'Unauthorized Access');
+  const user = await userModel.findById(decoded.sub).select('+refreshToken');
+  if (!user || user.refreshToken !== refreshToken)
     return res.redirect('/auth/login');
-  }
 
   const newAccessToken = signAccessToken(user);
 
   res.cookie('accessToken', newAccessToken, {
     httpOnly: true,
     sameSite: 'lax',
-    secure: env.NODE_ENV === 'production',
-    maxAge: config.ACCESS_TOKEN_TTL * 1000,
+    secure: config.NODE_ENV === 'production',
+    maxAge: ACCESS_TOKEN_TTL * 1000,
   });
 
-  res.cookie('refreshToken', refreshToken, {
-    httpOnly: true,
-    sameSite: 'lax',
-    secure: env.NODE_ENV === 'production',
-    maxAge: config.REFRESH_TOKEN_TTL * 1000,
-  });
-
-  req.user = verifyAccessToken(newAccessToken);
+  req.user = user;
+  res.locals.currentUser = user;
   next();
 };

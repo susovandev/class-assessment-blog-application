@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const replySchema = new mongoose.Schema(
   {
@@ -9,13 +9,13 @@ const replySchema = new mongoose.Schema(
 
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
       required: true,
     },
 
     commentId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Comment",
+      ref: 'Comment',
       required: true,
     },
 
@@ -24,7 +24,7 @@ const replySchema = new mongoose.Schema(
       default: true,
     },
   },
-  {timestamps: true}
+  { timestamps: true }
 );
 
-export default mongoose.model("Reply", replySchema);
+export default mongoose.model('Reply', replySchema);

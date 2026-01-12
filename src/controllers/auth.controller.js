@@ -41,6 +41,7 @@ export const registerHandler = async (req, res) => {
       email: normalizedEmail,
       password: hashedPassword,
       role: 'user',
+      isActive: true,
     });
     if (!newUser) {
       req.flash('error', 'Something went wrong please try again');
@@ -64,6 +65,11 @@ export const loginHandler = async (req, res) => {
     const user = await userModel.findOne({ email: normalizedEmail });
     if (!user) {
       req.flash('error', 'Invalid email or password');
+      return res.redirect('/auth/login');
+    }
+
+    if (!user?.isActive) {
+      req.flash('error', 'Your account has been disabled');
       return res.redirect('/auth/login');
     }
 
@@ -125,15 +131,8 @@ export const loginHandler = async (req, res) => {
 
 export const logoutHandler = async (req, res) => {
   try {
-    const { sub } = req.user;
-
-    const user = await userModel.findByIdAndUpdate(
-      sub,
-      {
-        refreshToken: null,
-      },
-      { new: true }
-    );
+    req.user.refreshToken = null;
+    await req.user.save();
 
     res.clearCookie('accessToken');
     res.clearCookie('refreshToken');

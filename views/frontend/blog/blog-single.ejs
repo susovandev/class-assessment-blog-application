@@ -1,249 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
-	<%- include("../../partials/frontend/head.ejs") %>
+  <%- include("../../partials/frontend/head.ejs") %>
 
-	<body>
-		<!-- Flash Messages -->
-<!-- ======= Flash Messages ======= -->
-<%- include('../../partials/frontend/toast.ejs') %>
+  <body>
+    <!-- Flash Messages -->
+    <!-- ======= Flash Messages ======= -->
+    <%- include('../../partials/frontend/toast.ejs') %>
 
+    <!-- ======= Header ======= -->
+    <%- include("../../partials/frontend/header.ejs") %>
+    <!-- End Header -->
 
-		<!-- ======= Header ======= -->
-		<%- include("../../partials/frontend/header.ejs") %>
-		<!-- End Header -->
-		
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+          <div class="d-flex justify-content-between align-items-center">
+            <h2>Blog</h2>
+            <ol>
+              <li><a href="index.html">Home</a></li>
+              <li>Blog</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+      <!-- End Breadcrumbs -->
 
-		<main id="main">
-			<!-- ======= Breadcrumbs ======= -->
-			<section id="breadcrumbs" class="breadcrumbs">
-				<div class="container">
-					<div class="d-flex justify-content-between align-items-center">
-						<h2>Blog</h2>
-						<ol>
-							<li><a href="index.html">Home</a></li>
-							<li>Blog</li>
-						</ol>
-					</div>
-				</div>
-			</section>
-			<!-- End Breadcrumbs -->
+      <!-- ======= Blog Section ======= -->
+      <section id="blog" class="blog">
+        <div class="container">
+          <div class="row">
+            <!-- ======= Blog Entries ======= -->
+            <div class="col-lg-8 entries">
+              <article class="entry entry-single" data-aos="fade-up">
+                <div class="entry-img">
+                  <img
+                    src="<%= blog.image.secure_url %>"
+                    alt=""
+                    class="img-fluid"
+                    style="width: 400px; height: 400px"
+                  />
+                </div>
 
-			<!-- ======= Blog Section ======= -->
-			<section id="blog" class="blog">
-				<div class="container">
-					<div class="row">
-						<!-- ======= Blog Entries ======= -->
-						<div class="col-lg-8 entries">
-							<article class="entry entry-single" data-aos="fade-up">
-								<div class="entry-img">
-									<img
-										src="<%= blog.image.secure_url %>"
-										alt=""
-										class="img-fluid"
-										style="width: 400px; height: 400px;"
-									/>
-								</div>
+                <h2 class="entry-title">
+                  <a href="blogs/<%= blog._id %>"><%= blog.title %></a>
+                </h2>
 
-								<h2 class="entry-title">
-									<a href="blogs/<%= blog._id %>"><%= blog.title %></a>
-								</h2>
+                <div class="entry-meta">
+                  <ul>
+                    <li class="d-flex align-items-center">
+                      <i class="icofont-user"></i>
+                      <a href="blogs/<%= blog._id %>">
+                        <%= blog.authorId.username %>
+                      </a>
+                    </li>
+                    <li class="d-flex align-items-center">
+                      <i class="icofont-wall-clock"></i>
+                      <a href="blogs/<%= blog._id %>">
+                        <time datetime="2020-01-01">
+                          <%= new Date(blog?.createdAt).toLocaleDateString() %>
+                        </time>
+                      </a>
+                    </li>
+                    <li class="d-flex align-items-center">
+                      <i class="icofont-comment"></i>
+                      <a href="blogs/<%= blog._id %>">
+                        (<%= comments.length %>) Comments
+                      </a>
+                    </li>
+                  </ul>
+                </div>
 
-								<div class="entry-meta">
-									<ul>
-										<li class="d-flex align-items-center">
-											<i class="icofont-user"></i>
-											<a href="blogs/<%= blog._id %>">
-												<%= blog.authorId.username %>
-											</a>
-										</li>
-										<li class="d-flex align-items-center">
-											<i class="icofont-wall-clock"></i>
-											<a href="blogs/<%= blog._id %>">
-												<time datetime="2020-01-01">
-													<%= new Date(blog?.createdAt).toLocaleDateString() %>
-												</time>
-											</a>
-										</li>
-										<li class="d-flex align-items-center">
-											<i class="icofont-comment"></i>
-											<a href="blogs/<%= blog._id %>">
-												(<%= comments.length %>) Comments
-											</a>
-										</li>
-									</ul>
-								</div>
+                <div class="entry-content">
+                  <p><%= blog.content %></p>
+                  <p><%= blog.content %></p>
 
-								<div class="entry-content">
-									<p><%= blog.content %></p>
-									<p><%= blog.content %></p>
+                  <blockquote>
+                    <i class="icofont-quote-left quote-left"></i>
+                    <p><%= blog.content %></p>
+                    <i class="icofont-quote-right quote-right"></i>
+                  </blockquote>
 
-									<blockquote>
-										<i class="icofont-quote-left quote-left"></i>
-										<p><%= blog.content %></p>
-										<i class="icofont-quote-right quote-right"></i>
-									</blockquote>
+                  <p><%= blog.content %></p>
 
-									<p><%= blog.content %></p>
+                  <h3><%= blog.content %></h3>
+                  <p><%= blog.content %></p>
 
-									<h3><%= blog.content %></h3>
-									<p><%= blog.content %></p>
+                  <img
+                    src="<%= blog.image.secure_url %>"
+                    class="img-fluid"
+                    alt=""
+                    style="width: 400px; height: 400px"
+                  />
 
-									<img
-										src="<%= blog.image.secure_url %>"
-										class="img-fluid"
-										alt=""
-										style="width: 400px; height: 400px;"
-									/>
+                  <h3><%= blog.content %></h3>
+                  <p><%= blog.content %></p>
+                  <p><%= blog.content %></p>
+                </div>
 
-									<h3><%= blog.content %></h3>
-									<p><%= blog.content %></p>
-									<p><%= blog.content %></p>
-								</div>
+                <div class="entry-footer clearfix">
+                  <div class="float-left">
+                    <i class="icofont-folder"></i>
+                    <ul class="cats">
+                      <li><a href="#">Business</a></li>
+                    </ul>
 
-								<div class="entry-footer clearfix">
-									<div class="float-left">
-										<i class="icofont-folder"></i>
-										<ul class="cats">
-											<li><a href="#">Business</a></li>
-										</ul>
+                    <i class="icofont-tags"></i>
+                    <ul class="tags">
+                      <% blog.tags.forEach(tag => { %>
+                      <li><a href="#"><%= tag %></a></li>
+                      <% }) %>
+                    </ul>
+                  </div>
 
-										<i class="icofont-tags"></i>
-										<ul class="tags">
-											<% blog.tags.forEach(tag => { %>
-												<li><a href="#"><%= tag %></a></li>
-											<% }) %>
-										</ul>
-									</div>
+                  <div class="float-right share">
+                    <a href="#" title="Share on Twitter">
+                      <i class="icofont-twitter"></i>
+                    </a>
+                    <a href="#" title="Share on Facebook">
+                      <i class="icofont-facebook"></i>
+                    </a>
+                    <a href="#" title="Share on Instagram">
+                      <i class="icofont-instagram"></i>
+                    </a>
+                  </div>
+                </div>
+              </article>
+              <!-- End blog entry -->
 
-									<div class="float-right share">
-										<a href="#" title="Share on Twitter">
-											<i class="icofont-twitter"></i>
-										</a>
-										<a href="#" title="Share on Facebook">
-											<i class="icofont-facebook"></i>
-										</a>
-										<a href="#" title="Share on Instagram">
-											<i class="icofont-instagram"></i>
-										</a>
-									</div>
-								</div>
-							</article>
-							<!-- End blog entry -->
+              <!-- ======= Author Box ======= -->
+              <div class="blog-author clearfix" data-aos="fade-up">
+                <img
+                  src="<%= blog.authorId.profileImage.secure_url || ('https://ui-avatars.com/api/?name=' + blog.authorId.username) %>"
+                  class="rounded-circle float-left"
+                  alt=""
+                />
+                <h4><%= blog.authorId.username %></h4>
 
-							<!-- ======= Author Box ======= -->
-							<div class="blog-author clearfix" data-aos="fade-up">
-								<img
-									src="<%= blog.authorId.profileImage.secure_url || ('https://ui-avatars.com/api/?name=' + blog.authorId.username) %>"
-									class="rounded-circle float-left"
-									alt=""
-								/>
-								<h4><%= blog.authorId.username %></h4>
+                <div class="social-links">
+                  <a href="#"><i class="icofont-twitter"></i></a>
+                  <a href="#"><i class="icofont-facebook"></i></a>
+                  <a href="#"><i class="icofont-instagram"></i></a>
+                </div>
 
-								<div class="social-links">
-									<a href="#"><i class="icofont-twitter"></i></a>
-									<a href="#"><i class="icofont-facebook"></i></a>
-									<a href="#"><i class="icofont-instagram"></i></a>
-								</div>
+                <p>
+                  Itaque quidem optio quia voluptatibus dolorem dolor. Modi eum
+                  sed possimus accusantium.
+                </p>
+              </div>
+              <!-- End author box -->
 
-								<p>
-									Itaque quidem optio quia voluptatibus dolorem dolor.
-									Modi eum sed possimus accusantium.
-								</p>
-							</div>
-							<!-- End author box -->
+              <!-- ======= Comments ======= -->
+              <div class="blog-comments" data-aos="fade-up">
+                <h4 class="comments-count"><%= comments.length %> Comments</h4>
 
-							<!-- ======= Comments ======= -->
-							<div class="blog-comments" data-aos="fade-up">
-								<h4 class="comments-count">
-									<%= comments.length %> Comments
-								</h4>
+                <% if (comments && comments.length > 0) { %> <%
+                comments.forEach(comment => { %>
+                <div class="comment clearfix">
+                  <img
+                    src="<%= comment.userId.profileImage.secure_url || ('https://ui-avatars.com/api/?name=' + comment.userId.username) %>"
+                    class="comment-img float-left"
+                    alt=""
+                  />
+                  <h5>
+                    <a href="#"><%= comment.userId.username %></a>
+                    <a href="#" class="reply">
+                      <i class="icofont-reply"></i> Reply
+                    </a>
+                  </h5>
+                  <time datetime="2020-01-01">
+                    <%= new Date(comment?.createdAt).toLocaleDateString() %>
+                  </time>
+                  <p><%= comment.content %></p>
+                </div>
+                <% }) %>
+                <% } else { %>
+                <p>No comments yet</p>
+                <% } %>
 
-								<% if (comments && comments.length > 0) { %>
-									<% comments.forEach(comment => { %>
-										<div class="comment clearfix">
-											<img
-												src="<%= comment.userId.profileImage.secure_url || ('https://ui-avatars.com/api/?name=' + comment.userId.username) %>"
-												class="comment-img float-left"
-												alt=""
-											/>
-											<h5>
-												<a href="#"><%= comment.userId.username %></a>
-												<a href="#" class="reply">
-													<i class="icofont-reply"></i> Reply
-												</a>
-											</h5>
-											<time datetime="2020-01-01">
-												<%= new Date(comment?.createdAt).toLocaleDateString() %>
-											</time>
-											<p><%= comment.content %></p>
-										</div>
-									<% }) %>
-								<% } else { %>
-									<p>No comments yet</p>
-								<% } %>
+                <div class="reply-form">
+                  <h4>Leave a Reply</h4>
+                  <p>
+                    Your email address will not be published. Required fields
+                    are marked *
+                  </p>
 
-								<div class="reply-form">
-									<h4>Leave a Reply</h4>
-									<p>
-										Your email address will not be published.
-										Required fields are marked *
-									</p>
+                  <form action="/comments/add/<%= blog._id %>" method="POST">
+                    <div class="row">
+                      <div class="col form-group">
+                        <textarea
+                          name="content"
+                          class="form-control"
+                          placeholder="Your Comment*"
+                        ></textarea>
+                      </div>
+                    </div>
 
-									<form action="/comments/add/<%= blog._id %>" method="POST">
-										<div class="row">
-											<div class="col form-group">
-												<textarea
-													name="content"
-													class="form-control"
-													placeholder="Your Comment*"
-												></textarea>
-											</div>
-										</div>
+                    <button type="submit" class="btn btn-primary">
+                      Post Comment
+                    </button>
+                  </form>
+                </div>
+              </div>
+              <!-- End comments -->
+            </div>
+            <!-- End blog entries -->
 
-										<button type="submit" class="btn btn-primary">
-											Post Comment
-										</button>
-									</form>
-								</div>
-							</div>
-							<!-- End comments -->
-						</div>
-						<!-- End blog entries -->
+            <!-- ======= Sidebar ======= -->
+            <div class="col-lg-4">
+              <div class="sidebar" data-aos="fade-left">
+                <h3 class="sidebar-title">Search</h3>
+                <div class="sidebar-item search-form">
+                  <form action="">
+                    <input type="text" />
+                    <button type="submit">
+                      <i class="icofont-search"></i>
+                    </button>
+                  </form>
+                </div>
 
-						<!-- ======= Sidebar ======= -->
-						<div class="col-lg-4">
-							<div class="sidebar" data-aos="fade-left">
-								<h3 class="sidebar-title">Search</h3>
-								<div class="sidebar-item search-form">
-									<form action="">
-										<input type="text" />
-										<button type="submit">
-											<i class="icofont-search"></i>
-										</button>
-									</form>
-								</div>
+                <h3 class="sidebar-title">Tags</h3>
+                <div class="sidebar-item tags">
+                  <ul>
+                    <li><a href="#">Business</a></li>
+                    <li><a href="#">Design</a></li>
+                    <li><a href="#">Creative</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- End sidebar -->
+          </div>
+        </div>
+      </section>
+      <!-- End Blog Section -->
+    </main>
 
-								<h3 class="sidebar-title">Tags</h3>
-								<div class="sidebar-item tags">
-									<ul>
-										<li><a href="#">Business</a></li>
-										<li><a href="#">Design</a></li>
-										<li><a href="#">Creative</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<!-- End sidebar -->
-					</div>
-				</div>
-			</section>
-			<!-- End Blog Section -->
-		</main>
-
-		<!-- ======= Footer ======= -->
-		<%- include("../../partials/frontend/footer.ejs") %>
-		<%- include("../../partials/frontend/end.ejs") %>
-	</body>
-<%- include("../../partials/frontend/toastTimeout.ejs") %>
-
+    <!-- ======= Footer ======= -->
+    <%- include("../../partials/frontend/footer.ejs") %>
+    <%- include("../../partials/frontend/end.ejs") %>
+  </body>
+  <%- include("../../partials/frontend/toastTimeout.ejs") %>
 </html>

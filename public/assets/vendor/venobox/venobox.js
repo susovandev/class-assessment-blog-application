@@ -13,7 +13,7 @@
 /* global jQuery */
 
 (function ($) {
-  "use strict";
+  'use strict';
   var autoplay,
     bgcolor,
     blockleft,
@@ -80,31 +80,31 @@
       var plugin = this;
       // default options
       var defaults = {
-        arrowsColor: "#B6B6B6",
+        arrowsColor: '#B6B6B6',
         autoplay: false, // same as data-autoplay - thanks @codibit
-        bgcolor: "#fff",
-        border: "0",
-        closeBackground: "transparent",
-        closeColor: "#d2d2d2",
-        framewidth: "",
-        frameheight: "",
+        bgcolor: '#fff',
+        border: '0',
+        closeBackground: 'transparent',
+        closeColor: '#d2d2d2',
+        framewidth: '',
+        frameheight: '',
         gallItems: false,
         infinigall: false,
-        htmlClose: "&times;",
-        htmlNext: "<span>Next</span>",
-        htmlPrev: "<span>Prev</span>",
+        htmlClose: '&times;',
+        htmlNext: '<span>Next</span>',
+        htmlPrev: '<span>Prev</span>',
         numeratio: false,
-        numerationBackground: "#161617",
-        numerationColor: "#d2d2d2",
-        numerationPosition: "top", // 'top' || 'bottom'
+        numerationBackground: '#161617',
+        numerationColor: '#d2d2d2',
+        numerationPosition: 'top', // 'top' || 'bottom'
         overlayClose: true, // disable overlay click-close - thanx @martybalandis
-        overlayColor: "rgba(23,23,23,0.85)",
-        spinner: "double-bounce", // available: 'rotating-plane' | 'double-bounce' | 'wave' | 'wandering-cubes' | 'spinner-pulse' | 'chasing-dots' | 'three-bounce' | 'circle' | 'cube-grid' | 'fading-circle' | 'folding-cube'
-        spinColor: "#d2d2d2",
-        titleattr: "title", // specific attribute to get a title (e.g. [data-title]) - thanx @mendezcode
-        titleBackground: "#161617",
-        titleColor: "#d2d2d2",
-        titlePosition: "top", // 'top' || 'bottom'
+        overlayColor: 'rgba(23,23,23,0.85)',
+        spinner: 'double-bounce', // available: 'rotating-plane' | 'double-bounce' | 'wave' | 'wandering-cubes' | 'spinner-pulse' | 'chasing-dots' | 'three-bounce' | 'circle' | 'cube-grid' | 'fading-circle' | 'folding-cube'
+        spinColor: '#d2d2d2',
+        titleattr: 'title', // specific attribute to get a title (e.g. [data-title]) - thanx @mendezcode
+        titleBackground: '#161617',
+        titleColor: '#d2d2d2',
+        titlePosition: 'top', // 'top' || 'bottom'
         share: [], // ['facebook', 'twitter', 'linkedin', 'pinterest', 'download']
         cb_pre_open: function () {
           return true;
@@ -129,7 +129,7 @@
         obj = $(this);
 
         // Prevent double initialization - thanx @matthistuff
-        if (obj.data("venobox")) {
+        if (obj.data('venobox')) {
           return true;
         }
 
@@ -137,21 +137,21 @@
         plugin.VBclose = function () {
           closeVbox();
         };
-        obj.addClass("vbox-item");
-        obj.data("framewidth", option.framewidth);
-        obj.data("frameheight", option.frameheight);
-        obj.data("border", option.border);
-        obj.data("bgcolor", option.bgcolor);
-        obj.data("numeratio", option.numeratio);
-        obj.data("gallItems", option.gallItems);
-        obj.data("infinigall", option.infinigall);
-        obj.data("overlaycolor", option.overlayColor);
-        obj.data("titleattr", option.titleattr);
-        obj.data("share", option.share);
+        obj.addClass('vbox-item');
+        obj.data('framewidth', option.framewidth);
+        obj.data('frameheight', option.frameheight);
+        obj.data('border', option.border);
+        obj.data('bgcolor', option.bgcolor);
+        obj.data('numeratio', option.numeratio);
+        obj.data('gallItems', option.gallItems);
+        obj.data('infinigall', option.infinigall);
+        obj.data('overlaycolor', option.overlayColor);
+        obj.data('titleattr', option.titleattr);
+        obj.data('share', option.share);
 
-        obj.data("venobox", true);
+        obj.data('venobox', true);
 
-        obj.on("click", function (e) {
+        obj.on('click', function (e) {
           e.preventDefault();
           obj = $(this);
 
@@ -170,38 +170,38 @@
             navigateGall(theprev);
           };
 
-          overlayColor = obj.data("overlay") || obj.data("overlaycolor");
+          overlayColor = obj.data('overlay') || obj.data('overlaycolor');
 
-          framewidth = obj.data("framewidth");
-          frameheight = obj.data("frameheight");
+          framewidth = obj.data('framewidth');
+          frameheight = obj.data('frameheight');
           // set data-autoplay="true" for vimeo and youtube videos - thanx @zehfernandes
-          autoplay = obj.data("autoplay") || option.autoplay;
-          border = obj.data("border");
-          bgcolor = obj.data("bgcolor");
+          autoplay = obj.data('autoplay') || option.autoplay;
+          border = obj.data('border');
+          bgcolor = obj.data('bgcolor');
           nextok = false;
           prevok = false;
           keyNavigationDisabled = false;
 
           // set a different url to be loaded using data-href="" - thanx @pixeline
-          dest = obj.data("href") || obj.attr("href");
-          extraCss = obj.data("css") || "";
-          title = obj.attr(obj.data("titleattr")) || "";
-          share = obj.data("share");
+          dest = obj.data('href') || obj.attr('href');
+          extraCss = obj.data('css') || '';
+          title = obj.attr(obj.data('titleattr')) || '';
+          share = obj.data('share');
 
           preloader = '<div class="vbox-preloader">';
 
           switch (option.spinner) {
-            case "rotating-plane":
+            case 'rotating-plane':
               preloader += '<div class="sk-rotating-plane"></div>';
               break;
-            case "double-bounce":
+            case 'double-bounce':
               preloader +=
                 '<div class="sk-double-bounce">' +
                 '<div class="sk-child sk-double-bounce1"></div>' +
                 '<div class="sk-child sk-double-bounce2"></div>' +
-                "</div>";
+                '</div>';
               break;
-            case "wave":
+            case 'wave':
               preloader +=
                 '<div class="sk-wave">' +
                 '<div class="sk-rect sk-rect1"></div>' +
@@ -209,34 +209,34 @@
                 '<div class="sk-rect sk-rect3"></div>' +
                 '<div class="sk-rect sk-rect4"></div>' +
                 '<div class="sk-rect sk-rect5"></div>' +
-                "</div>";
+                '</div>';
               break;
-            case "wandering-cubes":
+            case 'wandering-cubes':
               preloader +=
                 '<div class="sk-wandering-cubes">' +
                 '<div class="sk-cube sk-cube1"></div>' +
                 '<div class="sk-cube sk-cube2"></div>' +
-                "</div>";
+                '</div>';
               break;
-            case "spinner-pulse":
+            case 'spinner-pulse':
               preloader += '<div class="sk-spinner sk-spinner-pulse"></div>';
               break;
-            case "chasing-dots":
+            case 'chasing-dots':
               preloader +=
                 '<div class="sk-chasing-dots">' +
                 '<div class="sk-child sk-dot1"></div>' +
                 '<div class="sk-child sk-dot2"></div>' +
-                "</div>";
+                '</div>';
               break;
-            case "three-bounce":
+            case 'three-bounce':
               preloader +=
                 '<div class="sk-three-bounce">' +
                 '<div class="sk-child sk-bounce1"></div>' +
                 '<div class="sk-child sk-bounce2"></div>' +
                 '<div class="sk-child sk-bounce3"></div>' +
-                "</div>";
+                '</div>';
               break;
-            case "circle":
+            case 'circle':
               preloader +=
                 '<div class="sk-circle">' +
                 '<div class="sk-circle1 sk-child"></div>' +
@@ -251,9 +251,9 @@
                 '<div class="sk-circle10 sk-child"></div>' +
                 '<div class="sk-circle11 sk-child"></div>' +
                 '<div class="sk-circle12 sk-child"></div>' +
-                "</div>";
+                '</div>';
               break;
-            case "cube-grid":
+            case 'cube-grid':
               preloader +=
                 '<div class="sk-cube-grid">' +
                 '<div class="sk-cube sk-cube1"></div>' +
@@ -265,9 +265,9 @@
                 '<div class="sk-cube sk-cube7"></div>' +
                 '<div class="sk-cube sk-cube8"></div>' +
                 '<div class="sk-cube sk-cube9"></div>' +
-                "</div>";
+                '</div>';
               break;
-            case "fading-circle":
+            case 'fading-circle':
               preloader +=
                 '<div class="sk-fading-circle">' +
                 '<div class="sk-circle1 sk-circle"></div>' +
@@ -282,30 +282,30 @@
                 '<div class="sk-circle10 sk-circle"></div>' +
                 '<div class="sk-circle11 sk-circle"></div>' +
                 '<div class="sk-circle12 sk-circle"></div>' +
-                "</div>";
+                '</div>';
               break;
-            case "folding-cube":
+            case 'folding-cube':
               preloader +=
                 '<div class="sk-folding-cube">' +
                 '<div class="sk-cube1 sk-cube"></div>' +
                 '<div class="sk-cube2 sk-cube"></div>' +
                 '<div class="sk-cube4 sk-cube"></div>' +
                 '<div class="sk-cube3 sk-cube"></div>' +
-                "</div>";
+                '</div>';
               break;
           }
-          preloader += "</div>";
+          preloader += '</div>';
 
           navigation =
             '<a class="vbox-next">' +
             option.htmlNext +
             '</a><a class="vbox-prev">' +
             option.htmlPrev +
-            "</a>";
+            '</a>';
           vbheader =
             '<div class="vbox-title"></div><div class="vbox-left"><div class="vbox-num">0/0</div></div><div class="vbox-close">' +
             option.htmlClose +
-            "</div>";
+            '</div>';
           vbfooter = '<div class="vbox-share"></div>';
 
           core =
@@ -319,75 +319,75 @@
             vbheader +
             navigation +
             vbfooter +
-            "</div>";
+            '</div>';
 
-          $("body").append(core).addClass("vbox-open");
+          $('body').append(core).addClass('vbox-open');
 
           $(
-            ".vbox-preloader div:not(.sk-circle) .sk-child, .vbox-preloader .sk-rotating-plane, .vbox-preloader .sk-rect, .vbox-preloader div:not(.sk-folding-cube) .sk-cube, .vbox-preloader .sk-spinner-pulse"
-          ).css("background-color", option.spinColor);
+            '.vbox-preloader div:not(.sk-circle) .sk-child, .vbox-preloader .sk-rotating-plane, .vbox-preloader .sk-rect, .vbox-preloader div:not(.sk-folding-cube) .sk-cube, .vbox-preloader .sk-spinner-pulse'
+          ).css('background-color', option.spinColor);
 
-          overlay = $(".vbox-overlay");
-          container = $(".vbox-container");
-          content = $(".vbox-content");
-          blockleft = $(".vbox-left");
-          blocknum = $(".vbox-num");
-          blockshare = $(".vbox-share");
-          blocktitle = $(".vbox-title");
-          $preloader = $(".vbox-preloader");
+          overlay = $('.vbox-overlay');
+          container = $('.vbox-container');
+          content = $('.vbox-content');
+          blockleft = $('.vbox-left');
+          blocknum = $('.vbox-num');
+          blockshare = $('.vbox-share');
+          blocktitle = $('.vbox-title');
+          $preloader = $('.vbox-preloader');
 
           $preloader.show();
 
-          if (option.titlePosition == "top") {
-            sharepos = "bottom";
+          if (option.titlePosition == 'top') {
+            sharepos = 'bottom';
           } else {
-            sharepos = "top";
+            sharepos = 'top';
           }
-          blockshare.css(sharepos, "-1px");
+          blockshare.css(sharepos, '-1px');
           blockshare.css({
             color: option.titleColor,
             fill: option.titleColor,
-            "background-color": option.titleBackground,
+            'background-color': option.titleBackground,
           });
 
-          blocktitle.css(option.titlePosition, "-1px");
+          blocktitle.css(option.titlePosition, '-1px');
 
           blocktitle.css({
             color: option.titleColor,
-            "background-color": option.titleBackground,
+            'background-color': option.titleBackground,
           });
 
-          $(".vbox-close").css({
+          $('.vbox-close').css({
             color: option.closeColor,
-            "background-color": option.closeBackground,
+            'background-color': option.closeBackground,
           });
 
-          blockleft.css(option.numerationPosition, "-1px");
+          blockleft.css(option.numerationPosition, '-1px');
           blockleft.css({
             color: option.numerationColor,
-            "background-color": option.numerationBackground,
+            'background-color': option.numerationBackground,
           });
 
-          $(".vbox-next span, .vbox-prev span").css({
-            "border-top-color": option.arrowsColor,
-            "border-right-color": option.arrowsColor,
+          $('.vbox-next span, .vbox-prev span').css({
+            'border-top-color': option.arrowsColor,
+            'border-right-color': option.arrowsColor,
           });
 
-          content.html("");
-          content.css("opacity", "0");
-          overlay.css("opacity", "0");
+          content.html('');
+          content.css('opacity', '0');
+          overlay.css('opacity', '0');
 
           checknav();
 
           // fade in overlay
-          overlay.animate({opacity: 1}, 250, function () {
-            if (obj.data("vbtype") == "iframe") {
+          overlay.animate({ opacity: 1 }, 250, function () {
+            if (obj.data('vbtype') == 'iframe') {
               loadIframe();
-            } else if (obj.data("vbtype") == "inline") {
+            } else if (obj.data('vbtype') == 'inline') {
               loadInline();
-            } else if (obj.data("vbtype") == "ajax") {
+            } else if (obj.data('vbtype') == 'ajax') {
               loadAjax();
-            } else if (obj.data("vbtype") == "video") {
+            } else if (obj.data('vbtype') == 'video') {
               loadVid(autoplay);
             } else {
               content.html('<img src="' + dest + '">');
@@ -397,14 +397,14 @@
           });
 
           /* -------- KEYBOARD ACTIONS -------- */
-          $("body").keydown(keyboardHandler);
+          $('body').keydown(keyboardHandler);
 
           /* -------- PREVGALL -------- */
-          $(".vbox-prev").on("click", function () {
+          $('.vbox-prev').on('click', function () {
             navigateGall(theprev);
           });
           /* -------- NEXTGALL -------- */
-          $(".vbox-next").on("click", function () {
+          $('.vbox-next').on('click', function () {
             navigateGall(thenext);
           });
 
@@ -413,50 +413,54 @@
 
         /* -------- CHECK NEXT / PREV -------- */
         function checknav() {
-          thisgall = obj.data("gall");
-          numeratio = obj.data("numeratio");
-          gallItems = obj.data("gallItems");
-          infinigall = obj.data("infinigall");
-          share = obj.data("share");
-          blockshare.html("");
+          thisgall = obj.data('gall');
+          numeratio = obj.data('numeratio');
+          gallItems = obj.data('gallItems');
+          infinigall = obj.data('infinigall');
+          share = obj.data('share');
+          blockshare.html('');
           if (
-            obj.data("vbtype") !== "iframe" &&
-            obj.data("vbtype") !== "inline" &&
-            obj.data("vbtype") !== "ajax"
+            obj.data('vbtype') !== 'iframe' &&
+            obj.data('vbtype') !== 'inline' &&
+            obj.data('vbtype') !== 'ajax'
           ) {
             sharelinks = {
               pinterest:
                 '<a target="_blank" href="https://pinterest.com/pin/create/button/?url=' +
-                obj.prop("href") +
-                "&media=" +
-                obj.prop("href") +
-                "&description=" +
+                obj.prop('href') +
+                '&media=' +
+                obj.prop('href') +
+                '&description=' +
                 title +
                 '">' +
                 pinIcon +
-                "</a>",
+                '</a>',
               facebook:
                 '<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=' +
-                obj.prop("href") +
+                obj.prop('href') +
                 '">' +
                 fbIcon +
-                "</a>",
+                '</a>',
               twitter:
                 '<a target="_blank" href="https://twitter.com/intent/tweet?text=' +
                 title +
-                "&url=" +
-                obj.prop("href") +
+                '&url=' +
+                obj.prop('href') +
                 '">' +
                 twitterIcon +
-                "</a>",
+                '</a>',
               linkedin:
                 '<a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=' +
-                obj.prop("href") +
+                obj.prop('href') +
                 '">' +
                 linkedinIcon +
-                "</a>",
+                '</a>',
               download:
-                '<a target="_blank" href="' + obj.prop("href") + '">' + downloadIcon + "</a>",
+                '<a target="_blank" href="' +
+                obj.prop('href') +
+                '">' +
+                downloadIcon +
+                '</a>',
             };
             $.each(share, function (key, value) {
               blockshare.append(sharelinks[value]);
@@ -484,7 +488,7 @@
           // update gall numeration
           if (items.length >= 1) {
             gallIndex = items.index(obj) + 1;
-            blocknum.html(gallIndex + " / " + items.length);
+            blocknum.html(gallIndex + ' / ' + items.length);
           } else {
             gallIndex = 1;
           }
@@ -495,7 +499,7 @@
           }
 
           // update title
-          if (title !== "") {
+          if (title !== '') {
             blocktitle.show();
           } else {
             blocktitle.hide();
@@ -503,18 +507,18 @@
 
           // update navigation arrows
           if (!thenext.length && infinigall !== true) {
-            $(".vbox-next").css("display", "none");
+            $('.vbox-next').css('display', 'none');
             nextok = false;
           } else {
-            $(".vbox-next").css("display", "block");
+            $('.vbox-next').css('display', 'block');
             nextok = true;
           }
 
           if (items.index(obj) > 0 || infinigall === true) {
-            $(".vbox-prev").css("display", "block");
+            $('.vbox-prev').css('display', 'block');
             prevok = true;
           } else {
-            $(".vbox-prev").css("display", "none");
+            $('.vbox-prev').css('display', 'none');
             prevok = false;
           }
           // activate swipe
@@ -535,26 +539,28 @@
           }
           keyNavigationDisabled = true;
 
-          overlayColor = destination.data("overlay") || destination.data("overlaycolor");
+          overlayColor =
+            destination.data('overlay') || destination.data('overlaycolor');
 
-          framewidth = destination.data("framewidth");
-          frameheight = destination.data("frameheight");
-          border = destination.data("border");
-          bgcolor = destination.data("bgcolor");
-          dest = destination.data("href") || destination.attr("href");
+          framewidth = destination.data('framewidth');
+          frameheight = destination.data('frameheight');
+          border = destination.data('border');
+          bgcolor = destination.data('bgcolor');
+          dest = destination.data('href') || destination.attr('href');
 
-          autoplay = destination.data("autoplay");
+          autoplay = destination.data('autoplay');
 
           title =
-            (destination.data("titleattr") && destination.attr(destination.data("titleattr"))) ||
-            "";
+            (destination.data('titleattr') &&
+              destination.attr(destination.data('titleattr'))) ||
+            '';
 
           // swipe out item
           if (destination === theprev) {
-            content.addClass("vbox-animated").addClass("swipe-right");
+            content.addClass('vbox-animated').addClass('swipe-right');
           }
           if (destination === thenext) {
-            content.addClass("vbox-animated").addClass("swipe-left");
+            content.addClass('vbox-animated').addClass('swipe-left');
           }
 
           $preloader.show();
@@ -565,21 +571,21 @@
             },
             500,
             function () {
-              overlay.css("background", overlayColor);
+              overlay.css('background', overlayColor);
 
               content
-                .removeClass("vbox-animated")
-                .removeClass("swipe-left")
-                .removeClass("swipe-right")
-                .css({"margin-left": 0, "margin-right": 0});
+                .removeClass('vbox-animated')
+                .removeClass('swipe-left')
+                .removeClass('swipe-right')
+                .css({ 'margin-left': 0, 'margin-right': 0 });
 
-              if (destination.data("vbtype") == "iframe") {
+              if (destination.data('vbtype') == 'iframe') {
                 loadIframe();
-              } else if (destination.data("vbtype") == "inline") {
+              } else if (destination.data('vbtype') == 'inline') {
                 loadInline();
-              } else if (destination.data("vbtype") == "ajax") {
+              } else if (destination.data('vbtype') == 'ajax') {
                 loadAjax();
-              } else if (destination.data("vbtype") == "video") {
+              } else if (destination.data('vbtype') == 'video') {
                 loadVid(autoplay);
               } else {
                 content.html('<img src="' + dest + '">');
@@ -613,17 +619,22 @@
 
         /* -------- CLOSE VBOX -------- */
         function closeVbox() {
-          var cb_pre_close = option.cb_pre_close(obj, gallIndex, thenext, theprev);
+          var cb_pre_close = option.cb_pre_close(
+            obj,
+            gallIndex,
+            thenext,
+            theprev
+          );
 
           if (cb_pre_close === false) {
             return false;
           }
 
-          $("body").off("keydown", keyboardHandler).removeClass("vbox-open");
+          $('body').off('keydown', keyboardHandler).removeClass('vbox-open');
 
           obj.focus();
 
-          overlay.animate({opacity: 0}, 500, function () {
+          overlay.animate({ opacity: 0 }, 500, function () {
             overlay.remove();
             keyNavigationDisabled = false;
             option.cb_post_close();
@@ -631,18 +642,18 @@
         }
 
         /* -------- CLOSE CLICK -------- */
-        var closeclickclass = ".vbox-overlay";
+        var closeclickclass = '.vbox-overlay';
         if (!option.overlayClose) {
-          closeclickclass = ".vbox-close"; // close only on X
+          closeclickclass = '.vbox-close'; // close only on X
         }
 
-        $("body").on("click touchstart", closeclickclass, function (e) {
+        $('body').on('click touchstart', closeclickclass, function (e) {
           if (
-            $(e.target).is(".vbox-overlay") ||
-            $(e.target).is(".vbox-content") ||
-            $(e.target).is(".vbox-close") ||
-            $(e.target).is(".vbox-preloader") ||
-            $(e.target).is(".vbox-container")
+            $(e.target).is('.vbox-overlay') ||
+            $(e.target).is('.vbox-content') ||
+            $(e.target).is('.vbox-close') ||
+            $(e.target).is('.vbox-preloader') ||
+            $(e.target).is('.vbox-container')
           ) {
             closeVbox();
           }
@@ -656,7 +667,7 @@
         startouch = false;
 
         function onDownEvent(e) {
-          content.addClass("vbox-animated");
+          content.addClass('vbox-animated');
           startY = endY = e.pageY;
           startX = endX = e.pageX;
           startouch = true;
@@ -675,7 +686,7 @@
 
             if (absdiffX > absdiffY && absdiffX <= 100) {
               e.preventDefault();
-              content.css("margin-left", diffX);
+              content.css('margin-left', diffX);
             }
           }
         }
@@ -699,51 +710,56 @@
             if (Math.abs(diff) >= threshold && change === true) {
               navigateGall(subject);
             } else {
-              content.css({"margin-left": 0, "margin-right": 0});
+              content.css({ 'margin-left': 0, 'margin-right': 0 });
             }
           }
         }
 
         /* == GLOBAL DECLERATIONS == */
         var TouchMouseEvent = {
-          DOWN: "touchmousedown",
-          UP: "touchmouseup",
-          MOVE: "touchmousemove",
+          DOWN: 'touchmousedown',
+          UP: 'touchmouseup',
+          MOVE: 'touchmousemove',
         };
 
         /* == EVENT LISTENERS == */
         var onMouseEvent = function (event) {
           var type;
           switch (event.type) {
-            case "mousedown":
+            case 'mousedown':
               type = TouchMouseEvent.DOWN;
               break;
-            case "mouseup":
+            case 'mouseup':
               type = TouchMouseEvent.UP;
               break;
-            case "mouseout":
+            case 'mouseout':
               type = TouchMouseEvent.UP;
               break;
-            case "mousemove":
+            case 'mousemove':
               type = TouchMouseEvent.MOVE;
               break;
             default:
               return;
           }
-          var touchMouseEvent = normalizeEvent(type, event, event.pageX, event.pageY);
+          var touchMouseEvent = normalizeEvent(
+            type,
+            event,
+            event.pageX,
+            event.pageY
+          );
           $(event.target).trigger(touchMouseEvent);
         };
 
         var onTouchEvent = function (event) {
           var type;
           switch (event.type) {
-            case "touchstart":
+            case 'touchstart':
               type = TouchMouseEvent.DOWN;
               break;
-            case "touchend":
+            case 'touchend':
               type = TouchMouseEvent.UP;
               break;
-            case "touchmove":
+            case 'touchmove':
               type = TouchMouseEvent.MOVE;
               break;
             default:
@@ -756,7 +772,12 @@
           if (type == TouchMouseEvent.UP) {
             touchMouseEvent = normalizeEvent(type, event, null, null);
           } else {
-            touchMouseEvent = normalizeEvent(type, event, touch.pageX, touch.pageY);
+            touchMouseEvent = normalizeEvent(
+              type,
+              event,
+              touch.pageX,
+              touch.pageY
+            );
           }
           $(event.target).trigger(touchMouseEvent);
         };
@@ -771,15 +792,15 @@
         };
 
         /* == LISTEN TO ORIGINAL EVENT == */
-        if ("ontouchstart" in window) {
-          $(document).on("touchstart", onTouchEvent);
-          $(document).on("touchmove", onTouchEvent);
-          $(document).on("touchend", onTouchEvent);
+        if ('ontouchstart' in window) {
+          $(document).on('touchstart', onTouchEvent);
+          $(document).on('touchmove', onTouchEvent);
+          $(document).on('touchend', onTouchEvent);
         } else {
-          $(document).on("mousedown", onMouseEvent);
-          $(document).on("mouseup", onMouseEvent);
-          $(document).on("mouseout", onMouseEvent);
-          $(document).on("mousemove", onMouseEvent);
+          $(document).on('mousedown', onMouseEvent);
+          $(document).on('mouseup', onMouseEvent);
+          $(document).on('mouseout', onMouseEvent);
+          $(document).on('mousemove', onMouseEvent);
         }
 
         /* -------- LOAD AJAX -------- */
@@ -789,7 +810,7 @@
             cache: false,
           })
             .done(function (msg) {
-              content.html('<div class="vbox-inline">' + msg + "</div>");
+              content.html('<div class="vbox-inline">' + msg + '</div>');
               preloadFirst();
             })
             .fail(function () {
@@ -802,7 +823,9 @@
 
         /* -------- LOAD IFRAME -------- */
         function loadIframe() {
-          content.html('<iframe class="venoframe" src="' + dest + '"></iframe>');
+          content.html(
+            '<iframe class="venoframe" src="' + dest + '"></iframe>'
+          );
           //  $('.venoframe').load(function(){ // valid only for iFrames in same domain
           updateoverlay();
           //  });
@@ -814,13 +837,13 @@
           var videoObj = parseVideo(dest);
 
           // set rel=0 to hide related videos at the end of YT + optional autoplay
-          var stringAutoplay = autoplay ? "?rel=0&autoplay=1" : "?rel=0";
+          var stringAutoplay = autoplay ? '?rel=0&autoplay=1' : '?rel=0';
           var queryvars = stringAutoplay + getUrlParameter(dest);
 
-          if (videoObj.type == "vimeo") {
-            player = "https://player.vimeo.com/video/";
-          } else if (videoObj.type == "youtube") {
-            player = "https://www.youtube.com/embed/";
+          if (videoObj.type == 'vimeo') {
+            player = 'https://player.vimeo.com/video/';
+          } else if (videoObj.type == 'youtube') {
+            player = 'https://www.youtube.com/embed/';
           }
           content.html(
             '<iframe class="venoframe vbvid" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay" frameborder="0" src="' +
@@ -840,10 +863,10 @@
             /(http:|https:|)\/\/(player.|www.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com))\/(video\/|embed\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(\&\S+)?/
           );
           var type;
-          if (RegExp.$3.indexOf("youtu") > -1) {
-            type = "youtube";
-          } else if (RegExp.$3.indexOf("vimeo") > -1) {
-            type = "vimeo";
+          if (RegExp.$3.indexOf('youtu') > -1) {
+            type = 'youtube';
+          } else if (RegExp.$3.indexOf('vimeo') > -1) {
+            type = 'vimeo';
           }
           return {
             type: type,
@@ -855,17 +878,18 @@
          * get additional video url parameters
          */
         function getUrlParameter(name) {
-          var result = "";
+          var result = '';
           var sPageURL = decodeURIComponent(name);
-          var firstsplit = sPageURL.split("?");
+          var firstsplit = sPageURL.split('?');
 
           if (firstsplit[1] !== undefined) {
-            var sURLVariables = firstsplit[1].split("&");
+            var sURLVariables = firstsplit[1].split('&');
             var sParameterName;
             var i;
             for (i = 0; i < sURLVariables.length; i++) {
-              sParameterName = sURLVariables[i].split("=");
-              result = result + "&" + sParameterName[0] + "=" + sParameterName[1];
+              sParameterName = sURLVariables[i].split('=');
+              result =
+                result + '&' + sParameterName[0] + '=' + sParameterName[1];
             }
           }
           return encodeURI(result);
@@ -873,17 +897,17 @@
 
         /* -------- LOAD INLINE -------- */
         function loadInline() {
-          content.html('<div class="vbox-inline">' + $(dest).html() + "</div>");
+          content.html('<div class="vbox-inline">' + $(dest).html() + '</div>');
           updateoverlay();
         }
 
         /* -------- PRELOAD IMAGE -------- */
         function preloadFirst() {
-          images = content.find("img");
+          images = content.find('img');
 
           if (images.length) {
             images.each(function () {
-              $(this).one("load", function () {
+              $(this).one('load', function () {
                 updateoverlay();
               });
             });
@@ -895,14 +919,14 @@
         /* -------- FADE-IN THE NEW CONTENT -------- */
         function updateoverlay() {
           blocktitle.html(title);
-          content.find(">:first-child").addClass("vbox-figlio").css({
+          content.find('>:first-child').addClass('vbox-figlio').css({
             width: framewidth,
             height: frameheight,
             padding: border,
             background: bgcolor,
           });
 
-          $("img.vbox-figlio").on("dragstart", function (event) {
+          $('img.vbox-figlio').on('dragstart', function (event) {
             event.preventDefault();
           });
 
@@ -913,9 +937,9 @@
 
           content.animate(
             {
-              opacity: "1",
+              opacity: '1',
             },
-            "slow",
+            'slow',
             function () {
               $preloader.hide();
             }
@@ -932,15 +956,15 @@
           if (sonH + 60 < finH) {
             margine = (finH - sonH) / 2;
           } else {
-            margine = "30px";
+            margine = '30px';
           }
-          content.css("margin-top", margine);
-          content.css("margin-bottom", margine);
+          content.css('margin-top', margine);
+          content.css('margin-bottom', margine);
           option.cb_post_resize();
         }
 
         $(window).resize(function () {
-          if ($(".vbox-content").length) {
+          if ($('.vbox-content').length) {
             setTimeout(updateOL(), 800);
           }
         });

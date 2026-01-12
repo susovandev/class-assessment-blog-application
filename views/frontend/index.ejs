@@ -76,6 +76,46 @@
 
         </ul>
       </nav><!-- .nav-menu -->
+      <!-- User Icon -->
+<% if (currentUser && currentUser.role === 'user') { %>
+  <!-- User Dropdown -->
+  <div class="dropdown ml-3">
+    <a
+      href="#"
+      class="d-flex align-items-center text-green dropdown-toggle"
+      id="userDropdown"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+      style="font-size: 20px;"
+    >
+      <i class="icofont-user-alt-3"></i>
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
+      <a class="dropdown-item" href="/user/profile">
+        <i class="icofont-user mr-2"></i> Profile
+      </a>
+      <a class="dropdown-item" href="/user/profile/change-password">
+        <i class="icofont-key mr-2"></i> Change Password
+      </a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item text-danger" href="/auth/logout">
+        <i class="icofont-logout mr-2"></i> Logout
+      </a>
+    </div>
+  </div>
+<% } else { %>
+  <!-- Login Icon -->
+  <div class="ml-3">
+    <a href="/auth/login" class="text-green" style="font-size: 20px;">
+      <i class="icofont-user-alt-3"></i>
+    </a>
+  </div>
+<% } %>
+
+
+
 
       <div class="header-social-links">
         <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
@@ -457,6 +497,20 @@
   <%- include("../partials/frontend/footer.ejs") %>
   <!-- End Footer -->
   <%- include("../partials/frontend/end.ejs") %>
+
+<script>
+  const btn = document.getElementById('user-menu-btn');
+  const menu = document.getElementById('user-dropdown');
+
+  if (btn) {
+    btn.onclick = () => menu.classList.toggle('hidden');
+    document.onclick = (e) => {
+      if (!btn.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.add('hidden');
+      }
+    };
+  }
+</script>
 
 </body>
 <%- include("../partials/frontend/toastTimeout.ejs") %>

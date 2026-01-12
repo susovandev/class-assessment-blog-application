@@ -4,7 +4,7 @@
 
   <body class="bg-gray-100 min-h-screen flex">
     <!-- Sidebar -->
-    <%- include("../admin/sidebar.ejs", {username: admin.username, profileImage: admin.profileImage?.secure_url}) %>
+    <%- include("../admin/sidebar.ejs", {username: admin.username, profileImage: admin.profileImage?.secure_url ?? `https://ui-avatars.com/api/?name=${admin.username}`}) %>
 
     <!-- Main Content -->
     <main class="flex-1 p-8">
